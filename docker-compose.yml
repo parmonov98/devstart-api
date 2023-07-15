@@ -1,0 +1,51 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: sammy
+                uid: 1000
+            context: ./
+            dockerfile: ./docker/php/Dockerfile
+        image: devstart
+        container_name: devstart-app
+        restart: unless-stopped
+        working_dir: /var/www/
+        environment:
+            - CHOKIDAR_USERPOLLING=true
+            - PHP_IDE_CONFIG=serverName=Docker
+            - DEBUG=1
+        volumes:
+            - ./:/var/www
+        networks:
+            - devstart
+
+    mariadb:
+        image: mariadb:10.6.5
+        container_name: devstart-mariadb
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: 123
+        volumes:
+            - ./docker/my-db:/var/lib/mysql
+        networks:
+            - devstart
+
+
+    nginx:
+        image: nginx:alpine
+        container_name: devstart-nginx
+        restart: unless-stopped
+        ports:
+            - 9060:80
+        volumes:
+            - ./:/var/www
+            - ./docker/nginx:/etc/nginx/conf.d/
+        networks:
+            - devstart
+
+
+networks:
+    devstart:
+        driver: bridge
