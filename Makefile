@@ -121,6 +121,15 @@ artisan-migrate:
 
 phpstan:
 	docker exec devstart-app ./vendor/bin/phpstan analyse --memory-limit=2G
+
+project-cs-fix:
+	docker exec devstart-app ./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots --config=./docker/cs-fixer/.php-cs-fixer.php --allow-risky=yes
+
+cs-fix-path:
+	docker exec devstart-app ./vendor/bin/php-cs-fixer fix --path-mode=intersection $(path) -vvv --show-progress=dots --config=./docker/cs-fixer/.php-cs-fixer.php --allow-risky=yes
+
+phpstan:
+	docker exec devstart-app ./vendor/bin/phpstan analyse --memory-limit=2G
 ##
 # up
 #
