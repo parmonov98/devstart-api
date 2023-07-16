@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $patern = "/^998[0-9]{2}[0-9]{7}$/";
-    dd(preg_match($patern, "998334332321"));
+    return 'ok';
 });
