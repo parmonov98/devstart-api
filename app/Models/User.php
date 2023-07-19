@@ -28,6 +28,13 @@ class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'email', 'phone', 'password', 'user_type', 'is_admin', 'active'];
+
+    /**
      * @return HasOne
      */
     public function sms(): HasOne {
