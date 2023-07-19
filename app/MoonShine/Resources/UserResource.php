@@ -11,6 +11,7 @@ use MoonShine\Fields\Number;
 use MoonShine\Fields\Select;
 use MoonShine\Fields\Checkbox;
 use MoonShine\Resources\Resource;
+use MoonShine\Fields\SwitchBoolean;
 use MoonShine\Actions\FiltersAction;
 use MoonShine\BulkActions\BulkAction;
 use Illuminate\Database\Eloquent\Model;
@@ -31,8 +32,8 @@ class UserResource extends Resource
             Text::make('Mail', 'email'),
             Text::make('Phone', 'phone')->mask('998999999999'),
             Select::make('User type', 'user_type')->options(['idea_holder' => "Idea holder", 'developer' => "Developer"]),
-            Checkbox::make('Admin', 'is_admin'),
-            Checkbox::make('Status', 'active'),
+            SwitchBoolean::make('Admin', 'is_admin'),
+            SwitchBoolean::make('Status', 'active'),
         ];
 	}
 
@@ -63,11 +64,11 @@ class UserResource extends Resource
         return [
             BulkAction::make('Заблокировать', function (Model $item) {
                 $item->update(['active' => false]);
-            }, 'Деактивировано')->showInLine(),
+            }, 'Деактивировано')->showInLine()->withConfirm('Подтвердить действие', 'Пожалуйста, подтвердите свое действие, чтобы продолжить', 'Подтвердить'),
 
             BulkAction::make('Активировать', function (Model $item) {
                 $item->update(['active' => true]);
-            }, 'Aктивировано')->showInLine()
+            }, 'Aктивировано')->showInLine()->withConfirm('Подтвердить действие', 'Пожалуйста, подтвердите свое действие, чтобы продолжить', 'Подтвердить')
         ];
     }
 }
