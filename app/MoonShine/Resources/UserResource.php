@@ -10,6 +10,7 @@ use MoonShine\Fields\Text;
 use MoonShine\Fields\Number;
 use MoonShine\Fields\Select;
 use MoonShine\Fields\Checkbox;
+use MoonShine\Decorations\Flex;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\SwitchBoolean;
 use MoonShine\Actions\FiltersAction;
@@ -32,8 +33,10 @@ class UserResource extends Resource
             Text::make('Mail', 'email'),
             Text::make('Phone', 'phone')->mask('998999999999'),
             Select::make('User type', 'user_type')->options(['idea_holder' => "Idea holder", 'developer' => "Developer"]),
-            SwitchBoolean::make('Admin', 'is_admin'),
-            SwitchBoolean::make('Status', 'active'),
+            Flex::make([
+                SwitchBoolean::make('Admin', 'is_admin')->autoUpdate(false),
+                SwitchBoolean::make('Status', 'active')->autoUpdate(false)
+            ]),
         ];
 	}
 
