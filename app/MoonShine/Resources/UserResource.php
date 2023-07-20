@@ -19,16 +19,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserResource extends Resource
 {
-	public static string $model = User::class;
+    public static string $model = User::class;
 
-	public static string $title = 'Users';
+    public static string $title = 'Users';
 
     public static array $activeActions = ['show', 'edit'];
 
-	public function fields(): array
-	{
-		return [
-		    ID::make()->sortable(),
+    public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
             Text::make('Name')->readOnly(),
             Text::make('Mail', 'email'),
             Text::make('Phone', 'phone')->mask('998999999999'),
@@ -38,11 +38,11 @@ class UserResource extends Resource
                 SwitchBoolean::make('Status', 'active')->autoUpdate(false)
             ]),
         ];
-	}
+    }
 
-	public function rules(Model $item): array
-	{
-	    return [];
+    public function rules(Model $item): array
+    {
+        return [];
     }
 
     public function search(): array

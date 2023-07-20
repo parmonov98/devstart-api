@@ -24,7 +24,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property bool|null $is_admin
  * @property Collection|Skill[] $skills
  */
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -37,14 +38,16 @@ class User extends Authenticatable {
     /**
      * @return HasOne
      */
-    public function sms(): HasOne {
+    public function sms(): HasOne
+    {
         return $this->hasOne(SmsVerification::class);
     }
 
     /**
      * @return BelongsToMany
      */
-    public function skills(): BelongsToMany {
+    public function skills(): BelongsToMany
+    {
         return $this->belongsToMany(Skill::class, 'developer_skills_pivot');
     }
 }
