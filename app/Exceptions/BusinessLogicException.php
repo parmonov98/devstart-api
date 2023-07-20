@@ -11,6 +11,7 @@ class BusinessLogicException extends \Exception {
     public function render(): JsonResponse {
         return new JsonResponse([
             'message' => $this->getMessage(),
+            'code' => $this->code,
         ], 500);
     }
 }

@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property string $user_type
  * @property bool|null $is_admin
  * @property Collection|Skill[] $skills
+ * @property SmsVerification $sms
  */
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;

@@ -2,17 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use MoonShine\MoonShine;
-use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
+use MoonShine\Menu\MenuGroup;
+use Illuminate\Support\ServiceProvider;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
 
-class MoonShineServiceProvider extends ServiceProvider
-{
-    public function boot(): void
-    {
+class MoonShineServiceProvider extends ServiceProvider {
+    public function boot(): void {
         app(MoonShine::class)->menu([
             MenuGroup::make('moonshine::ui.resource.system', [
                 MenuItem::make('moonshine::ui.resource.admins_title', new MoonShineUserResource())
