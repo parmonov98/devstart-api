@@ -1,7 +1,7 @@
 <?php
 return [
    "channels" => [
-     "DevStartOtp" => -924883912
+     "DevStartOtp" => env('TELEGRAM_OTP_CHANEL_ID')
    ],
-  'verify_otp' => "bot6016125403:AAGVbPwdy1YsvyK83JBfezCW0s6j0RvGtQY"
+  'verify_otp' => env('TELEGRAM_OTP_BOT_ID')
 ];
