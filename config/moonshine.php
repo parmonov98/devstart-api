@@ -38,7 +38,7 @@ return [
         'providers' => [
             'moonshine' => [
                 'driver' => 'eloquent',
-                'model' => User::class,
+                'model' => MoonshineUser::class,
             ],
         ],
         'footer' => '',
