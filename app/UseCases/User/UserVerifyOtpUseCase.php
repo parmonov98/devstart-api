@@ -20,7 +20,7 @@ class UserVerifyOtpUseCase {
     public function perform(string $phone, int $code): string {
         $user = $this->getUserByPhoneTask->run($phone, ['sms']);
 
-        if ($user->sms === null) {
+        if (is_null($user->sms)) {
             throw new BusinessLogicException('Для этого пользователя нет код для подтверждения ' . $phone);
         }
 
