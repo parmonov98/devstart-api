@@ -16,7 +16,7 @@ class GetUserByPhoneTask {
     public function run(string $phone, array $relations = []): User {
         $user = User::query()->where('phone', '=', $phone)->with($relations)->first();
 
-        if ($user === null) {
+        if (is_null($user)) {
             throw new BusinessLogicException('Пользователь не существует', StatusCode::ERROR_NOT_FOUND);
         }
 
