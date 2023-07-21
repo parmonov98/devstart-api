@@ -25,15 +25,13 @@ class CreateAndSendSmsTask {
     public function run(User $user): void {
         if ($user->sms) {
             $sms = $user->sms;
-            $sms->code = random_int(1000, 9999);
             $sms->expired_at = now()->addMinutes(5);
-            $sms->save();
         } else {
             $sms = new SmsVerification();
             $sms->user_id = $user->id;
-            $sms->code = random_int(1000, 9999);
-            $sms->save();
         }
+        $sms->code = random_int(1000, 9999);
+        $sms->save();
         $this->telegramBot->sendMessage(
             [
                 'chat_id' => config('telegram_bots.channels.DevStartOtp'),
