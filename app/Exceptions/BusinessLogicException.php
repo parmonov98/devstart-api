@@ -2,16 +2,8 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Http\JsonResponse;
+class BusinessLogicException extends \Exception
+{
 
-class BusinessLogicException extends \Exception {
-    /**
-     * @return JsonResponse
-     */
-    public function render(): JsonResponse {
-        return new JsonResponse([
-            'message' => $this->getMessage(),
-            'code' => $this->code,
-        ], 500);
-    }
+    protected $code = 500;
 }
