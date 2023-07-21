@@ -3,13 +3,9 @@
 namespace App\MoonShine\Resources;
 
 use App\Models\User;
-// use Faker\Core\Number;
 use MoonShine\Fields\ID;
-
 use MoonShine\Fields\Text;
-use MoonShine\Fields\Number;
 use MoonShine\Fields\Select;
-use MoonShine\Fields\Checkbox;
 use MoonShine\Decorations\Flex;
 use MoonShine\Resources\Resource;
 use MoonShine\Fields\SwitchBoolean;
