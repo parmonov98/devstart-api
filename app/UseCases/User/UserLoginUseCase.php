@@ -23,7 +23,7 @@ class UserLoginUseCase {
     public function perform(string $phone, string $password): string {
         $user = $this->getUserByPhoneTask->run($phone, ['skills']);
 
-        if ($user->phone_verified_at === null) {
+        if (is_null($user->phone_verified_at)) {
             throw new BusinessLogicException('Подтвердите свой номер телефона', StatusCode::ERROR_NEED_PHONE_VERIFICATION);
         }
 
