@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\ApiController\User;
 
-use Illuminate\Http\Request;
 use App\DTO\User\UserRegisterDTO;
 use Illuminate\Http\JsonResponse;
 use App\UseCases\User\UserLoginUseCase;
+use App\UseCases\User\RefreshOtpUseCase;
 use App\Exceptions\BusinessLogicException;
+use App\UseCases\User\UserVerifyOtpUseCase;
 use App\UseCases\User\UserRegistrationUseCase;
 use App\Http\Requests\Api\User\UserLoginRequest;
+use App\Http\Requests\Api\User\VerifyOtpRequest;
 use App\Http\Requests\Api\User\UserRegisterRequest;
 use App\Http\Controllers\BaseController\ApiController;
 
@@ -44,6 +46,19 @@ class UserController extends ApiController {
         return $this->responseWithToken($token);
     }
 
-    public function verifyOtp(Request $request, UserLoginUseCase $useCase): JsonResponse {
+    /**
+     * @param VerifyOtpRequest $request
+     * @param UserVerifyOtpUseCase $useCase
+     * @return JsonResponse
+     * @throws BusinessLogicException
+     */
+    public function verifyOtp(VerifyOtpRequest $request, UserVerifyOtpUseCase $useCase): JsonResponse {
+        $token = $useCase->perform($request->input('phone'), $request->input('code'));
+
+        return $this->responseWithToken($token);
+    }
+
+    public function refreshOtp(string $phone, RefreshOtpUseCase $useCase): void {
+        $useCase->perform($phone);
     }
 }
