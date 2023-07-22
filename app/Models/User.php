@@ -25,20 +25,30 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property Collection|Skill[] $skills
  * @property SmsVerification $sms
  */
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'email', 'phone', 'password', 'user_type', 'is_admin', 'active'];
 
     /**
      * @return HasOne
      */
-    public function sms(): HasOne {
+    public function sms(): HasOne
+    {
         return $this->hasOne(SmsVerification::class);
     }
 
     /**
      * @return BelongsToMany
      */
-    public function skills(): BelongsToMany {
+    public function skills(): BelongsToMany
+    {
         return $this->belongsToMany(Skill::class, 'developer_skills_pivot');
     }
 }
