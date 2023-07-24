@@ -51,4 +51,26 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Skill::class, 'developer_skills_pivot');
     }
+
+    /**
+     * Scope a query to only include
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeDeveloper($query)
+    {
+        return $query->where('user_type', '=', 'developer');
+    }
+
+    /**
+     * Scope a query to only include
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIdeaHolder($query)
+    {
+        return $query->where('user_type', '=', 'idea_holder');
+    }
 }
