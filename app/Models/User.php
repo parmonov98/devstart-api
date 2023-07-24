@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property bool|null $is_admin
  * @property Collection|Skill[] $skills
  * @property SmsVerification $sms
+ *
  * @method static Builder developer()
  * @method static Builder ideaHolder()
  */
