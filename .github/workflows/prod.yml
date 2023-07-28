@@ -28,6 +28,8 @@ jobs:
 
           script: |
             cd /var/www/api.devstart.uz/public_html
+            git stash
+            git switch prod
             git pull origin prod
             composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader
             php artisan optimize:clear
