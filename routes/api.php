@@ -26,6 +26,7 @@ Route::post('/login', [UserController::class, 'userLogin']);
 Route::get('/skills', [SkillController::class, 'index']);
 Route::post('/setSkills', [SkillController::class, 'setSkillForUserWhoIsDeveloper']);
 Route::post('/verifyOtp', [UserController::class, 'verifyOtp']);
+Route::post('/refreshOtp/{phone}', [UserController::class, 'refreshOtp']);
 
 Route::middleware(['auth:sanctum', IsAdminMiddleware::class])->prefix('skills')->group(function () {
     Route::post('/', [SkillController::class, 'store']);

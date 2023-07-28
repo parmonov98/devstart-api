@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\User;
 use MoonShine\MoonShine;
-use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
+use MoonShine\Menu\MenuGroup;
+use Illuminate\Support\ServiceProvider;
+use App\MoonShine\Resources\UserResource;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
 
@@ -23,8 +25,9 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('bookmark'),
             ])->translatable(),
 
-            MenuItem::make('Documentation', 'https://laravel.com')
-                ->badge(fn() => 'Check'),
+            MenuGroup::make("Users", [
+                MenuItem::make('List', new UserResource())->icon('heroicons.users')
+            ])->icon('heroicons.user-group'),
         ]);
     }
 }

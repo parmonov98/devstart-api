@@ -6,10 +6,10 @@ use App\Сonstants\Regex\RegexConstants;
 use Illuminate\Foundation\Http\FormRequest;
 
 class VerifyOtpRequest extends FormRequest {
-    public function rules() {
+    public function rules(): array {
         return [
             'phone' => ['required', 'string', 'regex:' . RegexConstants::getPhoneRegex()],
-            'otp' => ['string', 'min:4'],
+            'code' => ['integer', 'min:4'],
         ];
     }
 }
