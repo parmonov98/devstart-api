@@ -8,15 +8,18 @@ UseCase is a class where we will keep business logic.
 - UseCase classes can accept any primitive data such as string, array, integer, and bool. 
 - if quantity of arguments is more than 3 then accepts DTO object
 - can return any data such as string, array, integer, and bool
-- must return BusinessLogicException in case of error 
- # example we have a controller method called getActiveUser and for this method we should create a class with name of GetActiveUserUseCase and 
+- must return BusinessLogicException in case of error
+
+   Example: we have a controller method called getActiveUser and for this method we should create a class with name of GetActiveUserUseCase and 
  we use this class with DI (Dependency Injection).
 - Task Class can be injected into __construct of UseCase classes
 
+
 2.  What is Task class ?
 ### Answer
- Task is a common class which we will be using it as a general logic. 
-#example 
+a Task is a common class which we will be using it as a general logic. 
+
+Example:
 we have a rule for checking user type and this logic can be needed in many places. 
 thereby the Task class must be callable from any point of project. from "Jobs", from "Controllers" and etc. 
 accordingly as a convention we name task classes like this: CheckUserIsActiveTask
