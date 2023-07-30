@@ -48,7 +48,7 @@ class SkillResource extends Resource
         ];
     }
 
-    private static function MakeHierarchicalOptions(&$skills = [], $parent_id = null, $level = 0)
+    private function MakeHierarchicalOptions(&$skills = [], $parent_id = null, $level = 0)
     {
         $skill_items = Skill::query();
 
@@ -62,14 +62,14 @@ class SkillResource extends Resource
 
         foreach ($skill_items as $id => $name) {
             $skills[$id] = " " . str_repeat("-", $level) . " " . $name;
-            self::MakeHierarchicalOptions($skills, $id, $level+1);
+            $this->MakeHierarchicalOptions($skills, $id, $level+1);
         }
     }
 
-    public function GetSkillOptions()
+    private function GetSkillOptions()
     {
         $skills = [];
-        self::MakeHierarchicalOptions($skills);
+        $this->MakeHierarchicalOptions($skills);
         return $skills;
     }
 }
