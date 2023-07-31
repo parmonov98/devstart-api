@@ -21,6 +21,7 @@ return [
     'hide_matching' => [
         '#^telescope#',
         '#^moonshine#',
+        '#^admin#',
         '#^docs#',
         '#^request-docs#',
         '#^api-docs#',

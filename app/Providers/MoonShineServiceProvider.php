@@ -34,7 +34,7 @@ class MoonShineServiceProvider extends ServiceProvider
             MenuGroup::make("Skills", [
                 MenuItem::make('List', new SkillResource())
             ])->icon('heroicons.code-bracket'),
-
+          
             MenuGroup::make("Categories", [
                 MenuItem::make('List', new CategoryResource())
             ])->icon('heroicons.cube'),
