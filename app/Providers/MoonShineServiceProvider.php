@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\MoonShine\Resources\SkillResource;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Menu\MenuGroup;
@@ -26,8 +27,12 @@ class MoonShineServiceProvider extends ServiceProvider
             ])->translatable(),
 
             MenuGroup::make("Users", [
-                MenuItem::make('List', new UserResource())->icon('heroicons.users')
+                MenuItem::make('List', new UserResource())
             ])->icon('heroicons.user-group'),
+
+            MenuGroup::make("Skills", [
+                MenuItem::make('List', new SkillResource())
+            ])->icon('heroicons.code-bracket'),
         ]);
     }
 }
