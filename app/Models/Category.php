@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Skill extends Model
+class Category extends Model
 {
     use HasFactory, HasHierarchyTrait;
 
-    protected static function GetParentColumn()
+    protected static function GetIdValuePair()
     {
-        return 'parent_skill';
+        return ['title', 'id'];
     }
 
     public function children(): HasMany
     {
-        return $this->hasMany(self::class, 'parent_skill');
+        return $this->hasMany(self::class, 'parent_id');
     }
 }

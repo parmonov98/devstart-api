@@ -2,27 +2,29 @@
 
 namespace App\MoonShine\Resources;
 
-use App\Models\Skill;
+use App\Models\Category;
 use MoonShine\Fields\ID;
+
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Select;
+use MoonShine\Fields\Textarea;
 use MoonShine\Resources\Resource;
 use MoonShine\Actions\FiltersAction;
 use Illuminate\Database\Eloquent\Model;
 
-class SkillResource extends Resource
+class CategoryResource extends Resource
 {
-    public static string $model = Skill::class;
+    public static string $model = Category::class;
 
-    public static string $title = 'Skills';
+    public static string $title = 'Categories';
 
     public function fields(): array
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name'),
-            Text::make('Icon'),
-            Select::make('Parent skill')->nullable()->options(Skill::GetOptions())->searchable()
+            Text::make('Title'),
+            Textarea::make('Description')->nullable()->hideOnIndex(),
+            Select::make('Parent', 'parent_id')->nullable()->options(Category::GetOptions())->searchable()
         ];
     }
 
