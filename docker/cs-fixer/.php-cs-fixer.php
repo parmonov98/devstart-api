@@ -92,8 +92,8 @@ $rules = [
 
 $finder = Finder::create()
     ->in([
-        '/var/www/app',
-        '/var/www/routes',
+        'd:\OSPanelNew\domains\devstart-api',
+        // '/var/www/routes',
 //        '/var/www/config',
 //        '/var/www/database',
 //        '/var/www/resources',

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use MoonShine\Models\MoonshineUser;
 use MoonShine\Exceptions\MoonShineNotFoundException;
 
