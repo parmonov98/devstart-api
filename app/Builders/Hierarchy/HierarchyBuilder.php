@@ -25,7 +25,7 @@ class HierarchyBuilder {
         return $this;
     }
 
-    protected function MakeHierarchicalOptions(array &$result = [], int $parent_id = null, int $level = 0) {
+    protected function MakeHierarchicalOptions(array &$result = [], int $parent_id = null, int $level = 0): void {
         $items = $this->model::query();
 
         if (is_null($parent_id)) {
