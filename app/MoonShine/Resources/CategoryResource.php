@@ -2,6 +2,7 @@
 
 namespace App\MoonShine\Resources;
 
+use App\Builders\Hierarchy\Hierarchy;
 use App\Models\Category;
 use MoonShine\Fields\ID;
 
@@ -20,11 +21,15 @@ class CategoryResource extends Resource
 
     public function fields(): array
     {
+        $options = (new Hierarchy(self::$model))
+            ->SetIdNamePair(['id', 'title'])
+            ->Make();
+
         return [
             ID::make()->sortable(),
             Text::make('Title'),
             Textarea::make('Description')->nullable()->hideOnIndex(),
-            Select::make('Parent', 'parent_id')->nullable()->options(Category::GetOptions())->searchable()
+            Select::make('Parent', 'parent_id')->nullable()->options($options)->searchable()
         ];
     }
 

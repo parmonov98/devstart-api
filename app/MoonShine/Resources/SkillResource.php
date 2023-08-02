@@ -8,6 +8,7 @@ use MoonShine\Fields\Text;
 use MoonShine\Fields\Select;
 use MoonShine\Resources\Resource;
 use MoonShine\Actions\FiltersAction;
+use App\Builders\Hierarchy\Hierarchy;
 use Illuminate\Database\Eloquent\Model;
 
 class SkillResource extends Resource
@@ -18,11 +19,16 @@ class SkillResource extends Resource
 
     public function fields(): array
     {
+        $options = (new Hierarchy(self::$model))
+            ->SetParentColumn('parent_skill')
+            ->SetIdNamePair(['id', 'name'])
+            ->Make();
+
         return [
             ID::make()->sortable(),
             Text::make('Name'),
             Text::make('Icon'),
-            Select::make('Parent skill')->nullable()->options(Skill::GetOptions())->searchable()
+            Select::make('Parent skill')->nullable()->options($options)->searchable()
         ];
     }
 
