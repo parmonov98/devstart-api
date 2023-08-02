@@ -5,7 +5,6 @@ namespace App\MoonShine\Resources;
 use App\Builders\Hierarchy\Hierarchy;
 use App\Models\Category;
 use MoonShine\Fields\ID;
-
 use MoonShine\Fields\Text;
 use MoonShine\Fields\Select;
 use MoonShine\Fields\Textarea;
@@ -24,7 +23,7 @@ class CategoryResource extends Resource
         $options = (new Hierarchy(self::$model))
             ->SetIdNamePair(['id', 'title'])
             ->Make();
-
+      
         return [
             ID::make()->sortable(),
             Text::make('Title'),
