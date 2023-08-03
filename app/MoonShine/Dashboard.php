@@ -7,10 +7,8 @@ use MoonShine\Metrics\ValueMetric;
 use MoonShine\Dashboard\DashboardBlock;
 use MoonShine\Dashboard\DashboardScreen;
 
-class Dashboard extends DashboardScreen
-{
-    public function blocks(): array
-    {
+class Dashboard extends DashboardScreen {
+    public function blocks(): array {
         return [
             DashboardBlock::make([
                 ValueMetric::make('Количество пользователей')
@@ -22,10 +20,10 @@ class Dashboard extends DashboardScreen
 
                 ValueMetric::make('Количество стартаперов')
                     ->value(User::query()->ideaHolder()->count())
-                    ->columnSpan(6)
+                    ->columnSpan(6),
 
                 // projects metrcis will be here soon
-            ])
+            ]),
         ];
     }
 }

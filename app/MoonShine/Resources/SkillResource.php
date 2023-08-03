@@ -9,40 +9,40 @@ use MoonShine\Fields\Select;
 use MoonShine\Resources\Resource;
 use MoonShine\Actions\FiltersAction;
 use Illuminate\Database\Eloquent\Model;
+use App\Builders\Hierarchy\HierarchyBuilder;
 
-class SkillResource extends Resource
-{
+class SkillResource extends Resource {
     public static string $model = Skill::class;
 
     public static string $title = 'Skills';
 
-    public function fields(): array
-    {
+    public function fields(): array {
+        $options = (new HierarchyBuilder(self::$model))
+            ->SetParentColumn('parent_skill')
+            ->SetIdNamePair('id', 'name')
+            ->Make();
+
         return [
             ID::make()->sortable(),
             Text::make('Name'),
             Text::make('Icon'),
-            Select::make('Parent skill')->nullable()->options(Skill::GetOptions())->searchable()
+            Select::make('Parent skill')->nullable()->options($options)->searchable(),
         ];
     }
 
-    public function rules(Model $item): array
-    {
+    public function rules(Model $item): array {
         return [];
     }
 
-    public function search(): array
-    {
+    public function search(): array {
         return ['id'];
     }
 
-    public function filters(): array
-    {
+    public function filters(): array {
         return [];
     }
 
-    public function actions(): array
-    {
+    public function actions(): array {
         return [
             FiltersAction::make(trans('moonshine::ui.filters')),
         ];

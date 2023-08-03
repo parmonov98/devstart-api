@@ -2,21 +2,18 @@
 
 namespace App\Providers;
 
-use App\Models\User;
-use App\MoonShine\Resources\CategoryResource;
-use App\MoonShine\Resources\SkillResource;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuItem;
 use MoonShine\Menu\MenuGroup;
 use Illuminate\Support\ServiceProvider;
 use App\MoonShine\Resources\UserResource;
+use App\MoonShine\Resources\SkillResource;
+use App\MoonShine\Resources\CategoryResource;
 use MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Resources\MoonShineUserRoleResource;
 
-class MoonShineServiceProvider extends ServiceProvider
-{
-    public function boot(): void
-    {
+class MoonShineServiceProvider extends ServiceProvider {
+    public function boot(): void {
         app(MoonShine::class)->menu([
             MenuGroup::make('moonshine::ui.resource.system', [
                 MenuItem::make('moonshine::ui.resource.admins_title', new MoonShineUserResource())
@@ -27,16 +24,16 @@ class MoonShineServiceProvider extends ServiceProvider
                     ->icon('bookmark'),
             ])->translatable(),
 
-            MenuGroup::make("Users", [
-                MenuItem::make('List', new UserResource())
+            MenuGroup::make('Users', [
+                MenuItem::make('List', new UserResource()),
             ])->icon('heroicons.user-group'),
 
-            MenuGroup::make("Skills", [
-                MenuItem::make('List', new SkillResource())
+            MenuGroup::make('Skills', [
+                MenuItem::make('List', new SkillResource()),
             ])->icon('heroicons.code-bracket'),
           
-            MenuGroup::make("Categories", [
-                MenuItem::make('List', new CategoryResource())
+            MenuGroup::make('Categories', [
+                MenuItem::make('List', new CategoryResource()),
             ])->icon('heroicons.cube'),
         ]);
     }

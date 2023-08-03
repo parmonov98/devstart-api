@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration {
     /**
@@ -10,10 +10,9 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('active')->nullable()->default(true)->after('is_admin')->comment("user Aktiv ekanligini bildirish uchun");
+            $table->boolean('active')->nullable()->default(true)->after('is_admin')->comment('user Aktiv ekanligini bildirish uchun');
         });
     }
 
@@ -22,8 +21,7 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('active');
         });
