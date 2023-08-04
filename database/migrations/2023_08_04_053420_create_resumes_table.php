@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('developer_cvs', function (Blueprint $table) {
+        Schema::create('resumes', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('file')->nullable();
@@ -29,6 +29,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('developer_cvs');
+        Schema::dropIfExists('resumes');
     }
 };
