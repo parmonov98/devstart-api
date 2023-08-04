@@ -36,10 +36,6 @@ class MoonShineServiceProvider extends ServiceProvider {
             MenuGroup::make('Categories', [
                 MenuItem::make('List', new CategoryResource()),
             ])->icon('heroicons.cube'),
-
-            MenuGroup::make('Resumes', [
-                MenuItem::make('List', new ResumeResource()),
-            ])->icon('heroicons.information-circle'),
         ]);
     }
 }

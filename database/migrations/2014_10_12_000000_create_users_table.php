@@ -11,8 +11,7 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function up(): void
-    {
+    public function up(): void {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -21,9 +20,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
-            $table->enum('user_type', [UserTypeConstants::USER_TYPE_IDEA_HOLDER,
-                                       UserTypeConstants::USER_TYPE_DEVELOPER]);
-            $table->boolean('is_admin')->default(false);
+            $table->enum('user_type', [UserTypeConstants::USER_TYPE_IDEA_HOLDER, UserTypeConstants::USER_TYPE_DEVELOPER]);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -34,8 +31,7 @@ return new class extends Migration {
      *
      * @return void
      */
-    public function down(): void
-    {
+    public function down(): void {
         Schema::dropIfExists('users');
     }
 };
